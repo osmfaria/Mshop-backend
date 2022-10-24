@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import { request } from 'http'
 import createUserService from '../services/user/userCreateService'
 import userDeleteService from '../services/user/userDeleteService'
 import userListOneService from '../services/user/userListOneService'
