@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator yup {
+  provider = "prisma-yup-generator"
+}
+
 model User {
   id          String    @id @default(uuid())
   name        String
@@ -21,6 +25,7 @@ model User {
   description String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  isAdmin     Boolean   @default(false)
 
   Address     Address?
   Publication Publication[]
