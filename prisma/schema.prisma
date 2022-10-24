@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator yup {
+  provider = "prisma-yup-generator"
+}
+
 model User {
   id          String    @id @default(uuid())
   name        String
