@@ -5,5 +5,5 @@ import { AddressUncheckedCreateNestedOneWithoutUserInputObjectSchema } from '../
 import { PublicationUncheckedCreateNestedManyWithoutUserInputObjectSchema } from '../internals';
 
 export const UserUncheckedCreateWithoutCommentInputObjectSchema = Yup.object({
-    id: Yup.string(),  name: Yup.string().required(),  email: Yup.string().required(),  password: Yup.string().required(),  cpf: Yup.string().required(),  phone: Yup.string().required(),  description: Yup.mixed().oneOfSchemas([Yup.string()]),  createdAt: Yup.date(),  updatedAt: Yup.date(),  Address: AddressUncheckedCreateNestedOneWithoutUserInputObjectSchema,  Publication: PublicationUncheckedCreateNestedManyWithoutUserInputObjectSchema
+    id: Yup.string(),  name: Yup.string().required(),  email: Yup.string().required(),  password: Yup.string().required(),  cpf: Yup.string().required(),  phone: Yup.string().required(),  description: Yup.mixed().oneOfSchemas([Yup.string()]),  createdAt: Yup.date(),  updatedAt: Yup.date(),  isAdmin: Yup.boolean(),  Address: AddressUncheckedCreateNestedOneWithoutUserInputObjectSchema,  Publication: PublicationUncheckedCreateNestedManyWithoutUserInputObjectSchema
 });

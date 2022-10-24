@@ -7,5 +7,5 @@ import { PublicationOrderByRelationAggregateInputObjectSchema } from '../interna
 import { CommentOrderByRelationAggregateInputObjectSchema } from '../internals';
 
 export const UserOrderByWithRelationInputObjectSchema = Yup.object({
-    id: SortOrderSchema,  name: SortOrderSchema,  email: SortOrderSchema,  password: SortOrderSchema,  cpf: SortOrderSchema,  phone: SortOrderSchema,  birthdate: SortOrderSchema,  description: SortOrderSchema,  createdAt: SortOrderSchema,  updatedAt: SortOrderSchema,  Address: AddressOrderByWithRelationInputObjectSchema,  Publication: PublicationOrderByRelationAggregateInputObjectSchema,  Comment: CommentOrderByRelationAggregateInputObjectSchema
+    id: SortOrderSchema,  name: SortOrderSchema,  email: SortOrderSchema,  password: SortOrderSchema,  cpf: SortOrderSchema,  phone: SortOrderSchema,  birthdate: SortOrderSchema,  description: SortOrderSchema,  createdAt: SortOrderSchema,  updatedAt: SortOrderSchema,  isAdmin: SortOrderSchema,  Address: AddressOrderByWithRelationInputObjectSchema,  Publication: PublicationOrderByRelationAggregateInputObjectSchema,  Comment: CommentOrderByRelationAggregateInputObjectSchema
 });

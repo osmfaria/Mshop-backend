@@ -5,6 +5,7 @@ import { StringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';;
+import { BoolFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { AddressUncheckedUpdateOneWithoutUserNestedInputObjectSchema } from '../internals';;
 import { CommentUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from '../internals';
 
@@ -16,5 +17,6 @@ StringFieldUpdateOperationsInputObjectSchema]),  password: Yup.mixed().oneOfSche
 StringFieldUpdateOperationsInputObjectSchema]),  cpf: Yup.mixed().oneOfSchemas([Yup.string(),
 StringFieldUpdateOperationsInputObjectSchema]),  phone: Yup.mixed().oneOfSchemas([Yup.string(),
 StringFieldUpdateOperationsInputObjectSchema]),  birthdate: Yup.mixed().oneOfSchemas([NullableDateTimeFieldUpdateOperationsInputObjectSchema]),  description: Yup.mixed().oneOfSchemas([Yup.string(),
-NullableStringFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  Address: AddressUncheckedUpdateOneWithoutUserNestedInputObjectSchema,  Comment: CommentUncheckedUpdateManyWithoutUserNestedInputObjectSchema
+NullableStringFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([Yup.boolean(),
+BoolFieldUpdateOperationsInputObjectSchema]),  Address: AddressUncheckedUpdateOneWithoutUserNestedInputObjectSchema,  Comment: CommentUncheckedUpdateManyWithoutUserNestedInputObjectSchema
 });

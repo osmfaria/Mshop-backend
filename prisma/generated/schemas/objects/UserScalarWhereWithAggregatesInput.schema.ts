@@ -4,7 +4,8 @@ import "../helpers/oneOfSchemas.helper.ts"
 import { StringWithAggregatesFilterObjectSchema } from '../internals';;
 import { DateTimeNullableWithAggregatesFilterObjectSchema } from '../internals';;
 import { StringNullableWithAggregatesFilterObjectSchema } from '../internals';;
-import { DateTimeWithAggregatesFilterObjectSchema } from '../internals';
+import { DateTimeWithAggregatesFilterObjectSchema } from '../internals';;
+import { BoolWithAggregatesFilterObjectSchema } from '../internals';
 
 export const UserScalarWhereWithAggregatesInputObjectSchema = Yup.object({
     AND: Yup.mixed().oneOfSchemas([Yup.lazy(() => UserScalarWhereWithAggregatesInputObjectSchema.default(undefined)),
@@ -16,5 +17,6 @@ Yup.string()]),  password: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterO
 Yup.string()]),  cpf: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjectSchema,
 Yup.string()]),  phone: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjectSchema,
 Yup.string()]),  birthdate: Yup.mixed().oneOfSchemas([DateTimeNullableWithAggregatesFilterObjectSchema]),  description: Yup.mixed().oneOfSchemas([StringNullableWithAggregatesFilterObjectSchema,
-Yup.string()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema])
+Yup.string()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([BoolWithAggregatesFilterObjectSchema,
+Yup.boolean()])
 });

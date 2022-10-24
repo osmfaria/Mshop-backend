@@ -13,7 +13,7 @@ const tokenValidation = async (
       token as string,
       process.env.JWT_SECRET as string,
       (error: any, decoded: any) => {
-        req.userPayload = { userId: decoded.id }
+        req.userPayload = { userId: decoded.id, isAdmin: decoded.isAdmin }
         next()
       }
     )

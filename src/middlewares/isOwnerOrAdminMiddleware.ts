@@ -1,19 +1,20 @@
 import { Request, Response, NextFunction } from 'express'
 import { AppError } from '../../errors/appError'
 
-const isOwnerMiddleware = async (
+const isOwnerOrAdminMiddleware = async (
   request: Request,
   response: Response,
   next: NextFunction
 ) => {
   const loggedUserId = request.userPayload.userId
+  const isAdmin = request.userPayload.isAdmin
   const searchId = request.params.user_id
 
-  if (loggedUserId === searchId) {
+  if (loggedUserId === searchId || isAdmin) {
     next()
   } else {
     throw new AppError('Unauthorized', 401)
   }
 }
 
-export default isOwnerMiddleware
+export default isOwnerOrAdminMiddleware

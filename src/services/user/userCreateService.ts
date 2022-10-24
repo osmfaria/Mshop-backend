@@ -5,39 +5,25 @@ import { User } from '@prisma/client'
 import { exclude } from '../../functions/excludePassword'
 import { AppError } from '../../../errors/appError'
 
-const createUserService = async ({
-  name,
-  email,
-  password,
-  cpf,
-  phone,
-  birthdate,
-  description,
-}: IUser): Promise<Omit<User, 'password'>> => {
-  const hashedPassword = await hash(password, 10)
-
+const createUserService = async (data: IUser): Promise<Omit<User, 'password'>> => {
+  
   const isNotUnique = await prismaClient.user.findFirst({
     where: {
-      OR: [{ email }, { cpf }, { phone }],
+      OR: [{ email: data.email }, { cpf: data.cpf }, { phone: data.phone }],
     },
   })
-
+  
   if (isNotUnique) {
     throw new AppError(
       'An user with this email, cpf or phone has already been registered'
-    )
-  }
-
+      )
+    }
+  
+  const hashedPassword = await hash(data.password, 10)
+  data = {...data, password: hashedPassword}
+  
   const user = await prismaClient.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-      cpf,
-      phone,
-      birthdate,
-      description,
-    },
+    data,
   })
 
   const userWithoutPassword = exclude(user, 'password')

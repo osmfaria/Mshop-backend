@@ -3,6 +3,7 @@ import { AppError } from '../../../errors/appError'
 import { prismaClient } from '../../database/prismaClient'
 import jwt from 'jsonwebtoken'
 
+
 const loginService = async (
   email: string,
   password: string
@@ -14,6 +15,7 @@ const loginService = async (
     select: {
       id: true,
       password: true,
+      isAdmin: true
     },
   })
 
@@ -27,9 +29,13 @@ const loginService = async (
     throw new AppError('Invalid email or password', 403)
   }
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-    expiresIn: '24h',
-  })
+  const token = jwt.sign(
+    { id: user.id, isAdmin: user.isAdmin},
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: '24h',
+    }
+  )
 
   return token
 }

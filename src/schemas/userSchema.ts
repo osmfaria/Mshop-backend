@@ -13,7 +13,8 @@ export const userCreateSchema: SchemaOf<IUser> = yup.object().shape({
   cpf: yup.string().required().max(15),
   phone: yup.string().required().max(15),
   birthdate: yup.date(),
-  description: yup.string().max(200)
+  description: yup.string().max(200),
+  isAdmin: yup.boolean()
 })
 
 export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({

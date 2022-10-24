@@ -6,5 +6,5 @@ import { PublicationCreateNestedManyWithoutUserInputObjectSchema } from '../inte
 import { CommentCreateNestedManyWithoutUserInputObjectSchema } from '../internals';
 
 export const UserCreateInputObjectSchema = Yup.object({
-    id: Yup.string(),  name: Yup.string().required(),  email: Yup.string().required(),  password: Yup.string().required(),  cpf: Yup.string().required(),  phone: Yup.string().required(),  description: Yup.mixed().oneOfSchemas([Yup.string()]),  createdAt: Yup.date(),  updatedAt: Yup.date(),  Address: AddressCreateNestedOneWithoutUserInputObjectSchema,  Publication: PublicationCreateNestedManyWithoutUserInputObjectSchema,  Comment: CommentCreateNestedManyWithoutUserInputObjectSchema
+    id: Yup.string(),  name: Yup.string().required(),  email: Yup.string().required(),  password: Yup.string().required(),  cpf: Yup.string().required(),  phone: Yup.string().required(),  description: Yup.mixed().oneOfSchemas([Yup.string()]),  createdAt: Yup.date(),  updatedAt: Yup.date(),  isAdmin: Yup.boolean(),  Address: AddressCreateNestedOneWithoutUserInputObjectSchema,  Publication: PublicationCreateNestedManyWithoutUserInputObjectSchema,  Comment: CommentCreateNestedManyWithoutUserInputObjectSchema
 });

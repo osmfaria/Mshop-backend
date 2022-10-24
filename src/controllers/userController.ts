@@ -10,18 +10,9 @@ export const createUserController = async (
   request: Request,
   response: Response
 ) => {
-  const { name, email, password, cpf, phone, birthdate, description } =
-    request.inputData
+  const data = request.inputData
 
-  const user = await createUserService({
-    name,
-    email,
-    password,
-    cpf,
-    phone,
-    birthdate,
-    description,
-  })
+  const user = await createUserService(data)
 
   return response.status(201).json(user)
 }

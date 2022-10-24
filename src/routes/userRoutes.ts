@@ -6,7 +6,7 @@ import {
   listUserController,
   updateUserController,
 } from '../controllers/userController'
-import isOwnerMiddleware from '../middlewares/isOwnerMiddleware'
+import isOwnerMiddleware from '../middlewares/isOwnerOrAdminMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'

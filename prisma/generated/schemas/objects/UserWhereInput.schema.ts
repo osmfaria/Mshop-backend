@@ -5,6 +5,7 @@ import { StringFilterObjectSchema } from '../internals';;
 import { DateTimeNullableFilterObjectSchema } from '../internals';;
 import { StringNullableFilterObjectSchema } from '../internals';;
 import { DateTimeFilterObjectSchema } from '../internals';;
+import { BoolFilterObjectSchema } from '../internals';;
 import { AddressRelationFilterObjectSchema } from '../internals';;
 import { AddressWhereInputObjectSchema } from '../internals';;
 import { PublicationListRelationFilterObjectSchema } from '../internals';;
@@ -20,6 +21,7 @@ Yup.string()]),  password: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  cpf: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  phone: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  birthdate: Yup.mixed().oneOfSchemas([DateTimeNullableFilterObjectSchema]),  description: Yup.mixed().oneOfSchemas([StringNullableFilterObjectSchema,
-Yup.string()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  Address: Yup.mixed().oneOfSchemas([AddressRelationFilterObjectSchema,
+Yup.string()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([BoolFilterObjectSchema,
+Yup.boolean()]),  Address: Yup.mixed().oneOfSchemas([AddressRelationFilterObjectSchema,
 AddressWhereInputObjectSchema]),  Publication: PublicationListRelationFilterObjectSchema,  Comment: CommentListRelationFilterObjectSchema
 });

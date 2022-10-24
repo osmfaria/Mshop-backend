@@ -6,6 +6,7 @@ export declare type IUser = {
   phone: string
   birthdate?: Date
   description?: string
+  isAdmin?: boolean
 }
 
 export declare type IUserUpdate = {
@@ -17,5 +18,6 @@ export declare type IUserUpdate = {
   birthdate?: Date
   description?: string
 }
+
 
 
