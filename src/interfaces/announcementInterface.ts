@@ -1,13 +1,15 @@
+import { Image, Vehicle_Type } from "@prisma/client"
+
 export declare type IAnnouncement = {
-    userId: string
+  userId: string
     type: string
     title: string
     year: string
     milieage: number
     price: number
-    type_vehicle?: string
+    vehicle_type: Vehicle_Type
     description: string
-    image?: string
+    link:string
   }
   
   export declare type IAnnouncementUpdate = {

@@ -4,24 +4,43 @@ import { AppError } from "../../../errors/appError"
 import { Publication } from "@prisma/client"
 
 
-const createAnnoucementService = async (user_id:string,data:IAnnouncement): Promise<Publication> => {
-    const user = prismaClient.user.findUnique({
-        where:{
-            id:user_id
-        }
-    })
+const createAnnoucementService = async ({userId,type,title,year,milieage,price,description,vehicle_type,link}: IAnnouncement)=> {
+  
+    const user = await prismaClient.user.findUnique({
+        where: {
+          id: userId,
+        },
+      })
 
-    if (!user) {
+      if (!user) {
         throw new AppError('User not found', 404)
       }
-    
-      const announcement = await prismaClient.publication.create({
-        data,
+      console.log("dsakjasfjdskalfhdjs")
+      const publication = await prismaClient.publication.create({
         
-     })  
-     
-     return announcement
-   
+        data:{
+          userId,
+          type,
+          title,
+          year,
+          milieage,
+          price,
+          description,
+          vehicle_type,
+        }
+        
+        
+      })
+      
+      const img = await prismaClient.image.create({
+        data:{
+            link,
+            publicationId:publication.id
+        }
+      })
+
+      return publication
+    
   }
   
   export default createAnnoucementService

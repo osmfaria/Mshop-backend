@@ -7,13 +7,12 @@ import announcementListOneService from '../services/announcement/announcementLis
 
 
 export const createAnnoucementController = async (req: Request,res: Response) => {
-  // const {userId} = req.params
-  // const {type,title,year,milieage,price,description,type_vehicle,image} = req.body
-
-  const data = req.inputData
-  const user_id = req.params.user_id
   
-  const announcement = await createAnnoucementService(user_id,data)
+  const {userId} = req.params
+  const {type,title,year,milieage,price,description,vehicle_type,link} = req.body
+
+ 
+  const announcement = await createAnnoucementService({userId,type,title,year,milieage,price,description,vehicle_type,link})
   
     return res.status(201).json(announcement)
   }

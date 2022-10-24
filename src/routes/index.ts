@@ -6,7 +6,7 @@ import announcementRouter from "./announcementRoute";
 const appRoutes = (app: Express) => {
     app.use("/users", userRouter)
     app.use("/login", loginRoute)
-    app.use("/announcement", announcementRouter)
+    app.use("/publication", announcementRouter)
 }
 
 export default appRoutes
