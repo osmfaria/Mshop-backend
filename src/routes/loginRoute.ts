@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { loginController } from "../controllers/loginControllet";
+import { loginController } from "../controllers/loginController";
 import { validate } from "../middlewares/validateMiddleware";
 import loginSchema from "../schemas/loginSchema";
 
 
-const loginRoute = Router()
+const loginRouter = Router()
 
-loginRoute.post("", validate(loginSchema), loginController)
+loginRouter.post("", validate(loginSchema), loginController)
 
-export default loginRoute
+export default loginRouter

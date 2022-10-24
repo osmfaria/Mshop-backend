@@ -7,6 +7,7 @@ export declare type IUser = {
   birthdate?: Date
   description?: string
   isAdmin?: boolean
+  address: IAddress
 }
 
 export declare type IUserUpdate = {
@@ -19,5 +20,21 @@ export declare type IUserUpdate = {
   description?: string
 }
 
+export declare type IAddress = {
+  address: string,
+  cep: string,
+  state: string,
+  city: string,
+  number: string,
+  complement?: string
+}
 
+export declare type IAddressUpdate = {
+  address?: string
+  cep?: string
+  state?: string
+  city?: string
+  number?: string
+  complement?: string
+}
 

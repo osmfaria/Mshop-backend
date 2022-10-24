@@ -14,7 +14,15 @@ export const userCreateSchema: SchemaOf<IUser> = yup.object().shape({
   phone: yup.string().required().max(15),
   birthdate: yup.date(),
   description: yup.string().max(200),
-  isAdmin: yup.boolean()
+  isAdmin: yup.boolean(),
+  address: yup.object({
+    address: yup.string().required().max(200),
+    cep: yup.string().required().max(20),
+    state: yup.string().required().max(2),
+    city: yup.string().required().min(3).max(50),
+    number: yup.string().required().min(1).max(7),
+    complement: yup.string()
+  })
 })
 
 export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
