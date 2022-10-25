@@ -5,6 +5,7 @@ declare global {
     interface Request {
       inputData: any
       userPayload: any
+      pagination: any
     }
   }
 }

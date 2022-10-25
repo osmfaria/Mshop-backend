@@ -1,3 +1,5 @@
+import { User } from "@prisma/client"
+
 const Account_Type: {
   BUYER: 'BUYER'
   SELLER: 'SELLER'
@@ -31,6 +33,13 @@ export declare type IUserUpdate = {
   description?: string
 }
 
+export declare type IUserResponse = {
+  pageCount: number
+  previousPage: string | null
+  nextPage: string | null
+  results: Omit<User[], 'password'>
+}
+
 export declare type IAddress = {
   address: string
   cep: string
@@ -48,3 +57,4 @@ export declare type IAddressUpdate = {
   number?: string
   complement?: string
 }
+

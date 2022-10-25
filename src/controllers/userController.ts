@@ -31,7 +31,8 @@ export const listUserController = async (
   request: Request,
   response: Response
 ) => {
-  const users = await userListService()
+  const { page, limit } = request.pagination
+  const users = await userListService(page, limit)
 
   response.json(users)
 }

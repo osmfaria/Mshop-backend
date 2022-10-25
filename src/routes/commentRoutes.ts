@@ -5,6 +5,7 @@ import {
   listCommentsByPublicationController,
 } from '../controllers/commentController'
 import isCommentOwnerOrAdminMiddlewarew from '../middlewares/isCommentOwnerOrAdminMiddleware'
+import pagination from '../middlewares/paginateMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { commentCreateSchema } from '../schemas/commentSchema'
@@ -19,6 +20,7 @@ commentRouter.post(
 )
 commentRouter.get(
   '/publication/:publication_id',
+  pagination,
   listCommentsByPublicationController
 )
 commentRouter.delete(
