@@ -35,6 +35,7 @@ const createUserService = async (
       birthdate: data.birthdate,
       description: data.description,
       isAdmin: data.isAdmin,
+      account_type: data.account_type,
       Address: {
         create: {
           address: address.address,

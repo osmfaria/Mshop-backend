@@ -17,6 +17,7 @@ const publicationCreateService = async (
       milieage: data.milieage,
       price: data.price,
       description: data.description,
+      vehicle_type: data.vehicle_type,
       user: {
         connect: {
           id
@@ -24,8 +25,6 @@ const publicationCreateService = async (
       }
     },
   })
-
-  console.log("publicaton is here: ", publication)
 
   return publication
 }

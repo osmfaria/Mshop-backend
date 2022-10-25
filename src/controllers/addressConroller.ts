@@ -3,8 +3,8 @@ import addressListService from '../services/address/addressListService'
 import addressUpdateService from '../services/address/addressUpdateService'
 
 export const listAddressController = async (request: Request, response: Response) => {
-    const id = request.userPayload.id
-
+    const id = request.userPayload.userId
+    console.log(id)
     const address = await addressListService(id)
 
     response.json(address)
