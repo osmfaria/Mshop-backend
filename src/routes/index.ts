@@ -4,6 +4,7 @@ import commentRouter from "./commentRoutes";
 import loginRouter from "./loginRoute";
 import publicationRouter from "./publicationRoutes";
 import userRouter from "./userRoutes";
+import announcementRouter from "./announcementRoute";
 
 const appRoutes = (app: Express) => {
     app.use("/users", userRouter)

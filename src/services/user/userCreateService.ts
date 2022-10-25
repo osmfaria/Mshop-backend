@@ -53,7 +53,7 @@ const createUserService = async (
   })
 
   const userWithoutPassword = exclude(user, 'password')
-
+  
   return userWithoutPassword
 }
 

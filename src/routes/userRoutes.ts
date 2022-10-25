@@ -11,6 +11,7 @@ import pagination from '../middlewares/paginateMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'
+import {publicationCreateSchema} from "../schemas/publicationSchema"
 
 const userRouter = Router()
 
