@@ -6,7 +6,8 @@ import {
   listUserController,
   updateUserController,
 } from '../controllers/userController'
-import isOwnerMiddleware from '../middlewares/isOwnerOrAdminMiddleware'
+import isAccountOwnerOrAdminMiddleware from '../middlewares/isAccountOwnerOrAdminMiddleware'
+import pagination from '../middlewares/paginateMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'
@@ -15,24 +16,24 @@ import {publicationCreateSchema} from "../schemas/publicationSchema"
 const userRouter = Router()
 
 userRouter.post('', validate(userCreateSchema), createUserController)
-userRouter.get('', tokenValidation, listUserController)
+userRouter.get('', tokenValidation, pagination, listUserController)
 userRouter.get(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   listOneUserController
 )
 userRouter.patch(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   validate(userUpdateSchema),
   updateUserController
 )
 userRouter.delete(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   deleteUserController
 )
 

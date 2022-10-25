@@ -6,6 +6,7 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from '../inter
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { BoolFieldUpdateOperationsInputObjectSchema } from '../internals';;
+import { EnumAccount_TypeFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { PublicationUpdateManyWithoutUserNestedInputObjectSchema } from '../internals';;
 import { CommentUpdateManyWithoutUserNestedInputObjectSchema } from '../internals';
 
@@ -18,5 +19,5 @@ StringFieldUpdateOperationsInputObjectSchema]),  cpf: Yup.mixed().oneOfSchemas([
 StringFieldUpdateOperationsInputObjectSchema]),  phone: Yup.mixed().oneOfSchemas([Yup.string(),
 StringFieldUpdateOperationsInputObjectSchema]),  birthdate: Yup.mixed().oneOfSchemas([NullableDateTimeFieldUpdateOperationsInputObjectSchema]),  description: Yup.mixed().oneOfSchemas([Yup.string(),
 NullableStringFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([Yup.boolean(),
-BoolFieldUpdateOperationsInputObjectSchema]),  Publication: PublicationUpdateManyWithoutUserNestedInputObjectSchema,  Comment: CommentUpdateManyWithoutUserNestedInputObjectSchema
+BoolFieldUpdateOperationsInputObjectSchema]),  account_type: Yup.mixed().oneOfSchemas([EnumAccount_TypeFieldUpdateOperationsInputObjectSchema]),  Publication: PublicationUpdateManyWithoutUserNestedInputObjectSchema,  Comment: CommentUpdateManyWithoutUserNestedInputObjectSchema
 });

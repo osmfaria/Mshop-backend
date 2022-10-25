@@ -5,7 +5,8 @@ import { StringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';;
-import { BoolFieldUpdateOperationsInputObjectSchema } from '../internals';
+import { BoolFieldUpdateOperationsInputObjectSchema } from '../internals';;
+import { EnumAccount_TypeFieldUpdateOperationsInputObjectSchema } from '../internals';
 
 export const UserUpdateManyMutationInputObjectSchema = Yup.object({
     id: Yup.mixed().oneOfSchemas([Yup.string(),
@@ -16,5 +17,5 @@ StringFieldUpdateOperationsInputObjectSchema]),  cpf: Yup.mixed().oneOfSchemas([
 StringFieldUpdateOperationsInputObjectSchema]),  phone: Yup.mixed().oneOfSchemas([Yup.string(),
 StringFieldUpdateOperationsInputObjectSchema]),  birthdate: Yup.mixed().oneOfSchemas([NullableDateTimeFieldUpdateOperationsInputObjectSchema]),  description: Yup.mixed().oneOfSchemas([Yup.string(),
 NullableStringFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([Yup.boolean(),
-BoolFieldUpdateOperationsInputObjectSchema])
+BoolFieldUpdateOperationsInputObjectSchema]),  account_type: Yup.mixed().oneOfSchemas([EnumAccount_TypeFieldUpdateOperationsInputObjectSchema])
 });

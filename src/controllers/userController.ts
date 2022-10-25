@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import { request } from 'http'
 import createUserService from '../services/user/userCreateService'
 import userDeleteService from '../services/user/userDeleteService'
 import userListOneService from '../services/user/userListOneService'
@@ -32,7 +31,8 @@ export const listUserController = async (
   request: Request,
   response: Response
 ) => {
-  const users = await userListService()
+  const { page, limit } = request.pagination
+  const users = await userListService(page, limit)
 
   response.json(users)
 }

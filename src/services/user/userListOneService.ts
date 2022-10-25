@@ -10,6 +10,9 @@ const userListOneService = async (
     where: {
       id: id,
     },
+    include: {
+      Address: true
+    }
   })
 
   if (!user) {

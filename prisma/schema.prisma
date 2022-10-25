@@ -26,10 +26,16 @@ model User {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   isAdmin     Boolean   @default(false)
+  account_type Account_Type @default(BUYER)
 
   Address     Address?
   Publication Publication[]
   Comment     Comment[]
+}
+
+enum Account_Type {
+  SELLER
+  BUYER
 }
 
 model Address {
@@ -43,7 +49,7 @@ model Address {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
 }
 
@@ -59,7 +65,7 @@ model Publication {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
-  user    User      @relation(fields: [userId], references: [id])
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
   Comment Comment[]
   Image   Image[]
@@ -76,9 +82,9 @@ model Comment {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  user          User        @relation(fields: [userId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        String
-  publication   Publication @relation(fields: [publicationId], references: [id])
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
   publicationId String
 }
 
@@ -86,6 +92,6 @@ model Image {
   id   String @id @default(uuid())
   link String
 
-  publication   Publication @relation(fields: [publicationId], references: [id])
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
   publicationId String
 }
