@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { AppError } from '../../errors/appError'
 
-const isOwnerOrAdminMiddleware = async (
+const isAccountOwnerOrAdminMiddleware = async (
   request: Request,
   response: Response,
   next: NextFunction
@@ -17,4 +17,4 @@ const isOwnerOrAdminMiddleware = async (
   }
 }
 
-export default isOwnerOrAdminMiddleware
+export default isAccountOwnerOrAdminMiddleware

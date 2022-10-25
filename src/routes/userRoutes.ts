@@ -6,7 +6,7 @@ import {
   listUserController,
   updateUserController,
 } from '../controllers/userController'
-import isOwnerMiddleware from '../middlewares/isOwnerOrAdminMiddleware'
+import isAccountOwnerOrAdminMiddleware from '../middlewares/isAccountOwnerOrAdminMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'
@@ -18,20 +18,20 @@ userRouter.get('', tokenValidation, listUserController)
 userRouter.get(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   listOneUserController
 )
 userRouter.patch(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   validate(userUpdateSchema),
   updateUserController
 )
 userRouter.delete(
   '/:user_id',
   tokenValidation,
-  isOwnerMiddleware,
+  isAccountOwnerOrAdminMiddleware,
   deleteUserController
 )
 

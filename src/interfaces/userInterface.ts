@@ -1,3 +1,13 @@
+const Account_Type: {
+  BUYER: 'BUYER'
+  SELLER: 'SELLER'
+} = {
+  BUYER: 'BUYER',
+  SELLER: 'SELLER',
+}
+
+type Account_Type = typeof Account_Type[keyof typeof Account_Type]
+
 export declare type IUser = {
   name: string
   email: string
@@ -8,6 +18,7 @@ export declare type IUser = {
   description?: string
   isAdmin?: boolean
   address: IAddress
+  account_type?: Account_Type 
 }
 
 export declare type IUserUpdate = {
@@ -21,11 +32,11 @@ export declare type IUserUpdate = {
 }
 
 export declare type IAddress = {
-  address: string,
-  cep: string,
-  state: string,
-  city: string,
-  number: string,
+  address: string
+  cep: string
+  state: string
+  city: string
+  number: string
   complement?: string
 }
 
@@ -37,4 +48,3 @@ export declare type IAddressUpdate = {
   number?: string
   complement?: string
 }
-

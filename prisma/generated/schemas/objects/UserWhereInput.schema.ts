@@ -6,6 +6,7 @@ import { DateTimeNullableFilterObjectSchema } from '../internals';;
 import { StringNullableFilterObjectSchema } from '../internals';;
 import { DateTimeFilterObjectSchema } from '../internals';;
 import { BoolFilterObjectSchema } from '../internals';;
+import { EnumAccount_TypeFilterObjectSchema } from '../internals';;
 import { AddressRelationFilterObjectSchema } from '../internals';;
 import { AddressWhereInputObjectSchema } from '../internals';;
 import { PublicationListRelationFilterObjectSchema } from '../internals';;
@@ -22,6 +23,6 @@ Yup.string()]),  cpf: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  phone: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  birthdate: Yup.mixed().oneOfSchemas([DateTimeNullableFilterObjectSchema]),  description: Yup.mixed().oneOfSchemas([StringNullableFilterObjectSchema,
 Yup.string()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  isAdmin: Yup.mixed().oneOfSchemas([BoolFilterObjectSchema,
-Yup.boolean()]),  Address: Yup.mixed().oneOfSchemas([AddressRelationFilterObjectSchema,
+Yup.boolean()]),  account_type: Yup.mixed().oneOfSchemas([EnumAccount_TypeFilterObjectSchema]),  Address: Yup.mixed().oneOfSchemas([AddressRelationFilterObjectSchema,
 AddressWhereInputObjectSchema]),  Publication: PublicationListRelationFilterObjectSchema,  Comment: CommentListRelationFilterObjectSchema
 });
