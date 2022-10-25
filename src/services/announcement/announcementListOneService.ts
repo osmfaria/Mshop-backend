@@ -2,20 +2,20 @@ import { Publication } from '@prisma/client'
 import { prismaClient } from '../../database/prismaClient'
 import { AppError } from "../../../errors/appError";
 
-const announcementListOneService = async (id:string) => {
+const publicationsListOneService = async (id:string) => {
     
-    const announcements = await prismaClient.publication.findUnique({
+    const publication = await prismaClient.publication.findUnique({
         where: {
           id: id,
         },
       })
 
-      if (!announcements) {
+      if (!publication) {
         throw new AppError('Publication not found', 404)
       }
 
-     return announcements 
+     return publication
     
 }
 
-export default announcementListOneService
+export default publicationsListOneService

@@ -1,14 +1,15 @@
 import { AppError } from '../../../errors/appError'
 import { prismaClient } from '../../database/prismaClient'
 
-const announcementDeleteService = async (id: string): Promise<void> => {
-    const announcements = await prismaClient.publication.findUnique({
+const publicationDeleteService = async (id: string): Promise<void> => {
+    
+    const publication = await prismaClient.publication.findUnique({
         where: {
           id: id,
         },
       })
 
-    if (!announcements) {
+    if (!publication) {
         throw new AppError('Publication not found', 404)
     }
 
@@ -19,4 +20,4 @@ const announcementDeleteService = async (id: string): Promise<void> => {
   })
 }
 
-export default announcementDeleteService
+export default publicationDeleteService

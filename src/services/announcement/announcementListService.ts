@@ -1,10 +1,10 @@
 import { Publication } from '@prisma/client'
 import { prismaClient } from '../../database/prismaClient'
 
-const announcementListService = async (): Promise<Publication[]> => {
-  const announcements = await prismaClient.publication.findMany()
+const publicationsListService = async (): Promise<Publication[]> => {
+  const publications = await prismaClient.publication.findMany()
 
-  return announcements
+  return publications
 }
 
-export default announcementListService
+export default publicationsListService

@@ -1,56 +1,56 @@
 import { Request, Response } from 'express'
-import createAnnoucementService from '../services/announcement/announcementCreateService'
-import announcementListService from '../services/announcement/announcementListService'
-import announcementUpdateService from '../services/announcement/annoucementUpdateService'
-import announcementDeleteService from '../services/announcement/annoucementDeleteService'
-import announcementListOneService from '../services/announcement/announcementListOneService'
+import createPublicationService from '../services/announcement/announcementCreateService'
+import publicationListService from '../services/announcement/announcementListService'
+import publicationUpdateService from '../services/announcement/annoucementUpdateService'
+import publicationDeleteService from '../services/announcement/annoucementDeleteService'
+import publicationListOneService from '../services/announcement/announcementListOneService'
 
 
-export const createAnnoucementController = async (req: Request,res: Response) => {
+export const createPublicationController = async (req: Request,res: Response) => {
   
-  const {userId} = req.params
+  const {user_id} = req.params
   const {type,title,year,milieage,price,description,vehicle_type,link} = req.body
 
  
-  const announcement = await createAnnoucementService({userId,type,title,year,milieage,price,description,vehicle_type,link})
+  const publication = await createPublicationService({user_id,type,title,year,milieage,price,description,vehicle_type,link})
   
-    return res.status(201).json(announcement)
+    return res.status(201).json(publication)
   }
 
 
-export const listAnnoucementController = async (req: Request,res: Response) => {
+export const listPublicationController = async (req: Request,res: Response) => {
     
   
-  const announcement = await announcementListService()
+  const publication = await publicationListService()
   
-  return res.status(200).json(announcement)
+  return res.status(200).json(publication)
   }
 
-export const listOneAnnoucementController = async (req: Request,res: Response) => {
+export const listOnePublicationController = async (req: Request,res: Response) => {
     
-  const id = req.params.user_id
-  const announcement = await announcementListOneService(id)
+  const {id} = req.params
+  const publication = await publicationListOneService(id)
     
-    return res.status(200).json(announcement)
+    return res.status(200).json(publication)
     }  
 
 
-export const updateAnnoucementController = async (req: Request,res: Response) => {
+export const updatePublicationController = async (req: Request,res: Response) => {
     
   const data = req.inputData
-  const id = req.params.user_id
+  const {id} = req.params
   
-  const announcement = await announcementUpdateService(id,data)
+  const publication = await publicationUpdateService(id,data)
   
-    return res.status(200).json(announcement)
+    return res.status(200).json(publication)
   }  
 
-export const deleteAnnoucementController = async (req: Request,res: Response) => {
+export const deletePublicationController = async (req: Request,res: Response) => {
     
-    const id = req.params.user_id
+    const {id} = req.params
+    console.log(id,"idconso")
+    const publication = await publicationDeleteService(id)
     
-    const announcement = await announcementDeleteService(id)
-    
-      return res.status(204).json(announcement)
+    return res.status(204).json(publication)
     }    
   

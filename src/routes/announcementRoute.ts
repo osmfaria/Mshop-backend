@@ -1,16 +1,20 @@
 import { Router } from 'express'
-import { createAnnoucementController } from '../controllers/annoucementController'
-import { listAnnoucementController } from '../controllers/annoucementController'
-import { listOneAnnoucementController } from '../controllers/annoucementController'
-import { updateAnnoucementController } from '../controllers/annoucementController'
-import { deleteAnnoucementController } from '../controllers/annoucementController'
+import {
+    createPublicationController,
+    listPublicationController,
+    listOnePublicationController,
+    updatePublicationController,
+    deletePublicationController } from '../controllers/annoucementController'
+import { validate } from '../middlewares/validateMiddleware'
+import {publicationCreateSchema,publicationUpdateSchema} from "../schemas/publicationSchema"
+
 
 const announcementRouter = Router()
 
-announcementRouter.post('/:user_id',createAnnoucementController)
-announcementRouter.get('',listAnnoucementController)
-announcementRouter.get('/:id',listOneAnnoucementController)
-announcementRouter.patch('',updateAnnoucementController)
-announcementRouter.delete('',deleteAnnoucementController)
+announcementRouter.post('/:user_id',validate(publicationCreateSchema),createPublicationController)
+announcementRouter.get('',listPublicationController)
+announcementRouter.get('/:id',listOnePublicationController)
+announcementRouter.patch('/:id',validate(publicationUpdateSchema),updatePublicationController)
+announcementRouter.delete('/:id',deletePublicationController)
 
 export default announcementRouter

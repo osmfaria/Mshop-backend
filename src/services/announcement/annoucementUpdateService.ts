@@ -1,16 +1,16 @@
 import { AppError } from '../../../errors/appError'
 import { prismaClient } from '../../database/prismaClient'
-import { IAnnouncementUpdate } from '../../interfaces/announcementInterface'
+import { IPublicationUpdate } from '../../interfaces/publication'
 import { Publication } from '@prisma/client'
 
-const announcementUpdateService = async (id:string,data:IAnnouncementUpdate) => {
-    const announcements = await prismaClient.publication.findUnique({
+const publicationUpdateService = async (id:string,data:IPublicationUpdate) => {
+    const publications = await prismaClient.publication.findUnique({
         where: {
           id: id,
         },
       })
 
-    if (!announcements) {
+    if (!publications) {
         throw new AppError('Publication not found', 404)
     }
 
@@ -20,6 +20,8 @@ const announcementUpdateService = async (id:string,data:IAnnouncementUpdate) => 
     },
     data: data,
   })
+
+  return publications
 }
 
-export default announcementUpdateService
+export default publicationUpdateService

@@ -1,25 +1,33 @@
-import {IAnnouncement} from "../../interfaces/announcementInterface"
+import {IPublication} from "../../interfaces/publication"
 import { prismaClient } from '../../database/prismaClient'
 import { AppError } from "../../../errors/appError"
 import { Publication } from "@prisma/client"
 
 
-const createAnnoucementService = async ({userId,type,title,year,milieage,price,description,vehicle_type,link}: IAnnouncement)=> {
+const createPublicationService = async ({user_id,type,title,year,milieage,price,description,vehicle_type,link}: IPublication)=> {
   
     const user = await prismaClient.user.findUnique({
         where: {
-          id: userId,
+          id: user_id,
         },
       })
 
       if (!user) {
         throw new AppError('User not found', 404)
       }
-      console.log("dsakjasfjdskalfhdjs")
+
+      if(vehicle_type !== "CAR" && vehicle_type !== "MOTORCYCLE"){
+        throw new AppError("Incorrect vehicle")
+      }
+      
       const publication = await prismaClient.publication.create({
         
         data:{
-          userId,
+          user:{
+            connect:{
+              id:user_id
+            }
+          },
           type,
           title,
           year,
@@ -27,11 +35,12 @@ const createAnnoucementService = async ({userId,type,title,year,milieage,price,d
           price,
           description,
           vehicle_type,
+        
         }
         
         
       })
-      
+     
       const img = await prismaClient.image.create({
         data:{
             link,
@@ -39,9 +48,15 @@ const createAnnoucementService = async ({userId,type,title,year,milieage,price,d
         }
       })
 
-      return publication
+      const obj = {
+        publication,
+        img
+        
+      }
+      return obj
+      
     
   }
   
-  export default createAnnoucementService
+  export default createPublicationService
   
