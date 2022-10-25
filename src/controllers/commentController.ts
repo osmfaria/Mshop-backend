@@ -29,8 +29,9 @@ export const deleteCommentController = async (
 
 export const listCommentsByPublicationController = async (request: Request, response: Response) => {
   const id = request.params.publication_id
+  const {page, limit} = request.pagination
 
-  const comments = await commentListByPublicationService(id)
+  const comments = await commentListByPublicationService(id, page, limit)
 
   response.json(comments)
 }

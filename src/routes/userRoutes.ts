@@ -7,6 +7,7 @@ import {
   updateUserController,
 } from '../controllers/userController'
 import isAccountOwnerOrAdminMiddleware from '../middlewares/isAccountOwnerOrAdminMiddleware'
+import pagination from '../middlewares/paginateMiddleware'
 import tokenValidation from '../middlewares/tokenMiddleware'
 import { validate } from '../middlewares/validateMiddleware'
 import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'
@@ -14,7 +15,7 @@ import { userCreateSchema, userUpdateSchema } from '../schemas/userSchema'
 const userRouter = Router()
 
 userRouter.post('', validate(userCreateSchema), createUserController)
-userRouter.get('', tokenValidation, listUserController)
+userRouter.get('', tokenValidation, pagination, listUserController)
 userRouter.get(
   '/:user_id',
   tokenValidation,
