@@ -1,27 +1,49 @@
 import * as yup from 'yup'
 import { SchemaOf } from 'yup'
-import { IUser, IUserUpdate } from '../interfaces/userInterface'
-import {IPublicationSchema,IPublicationSchemaUpdate} from "../interfaces/publication"
+import {
+  IPublication,
+  IPublicationUpdate,
+} from '../interfaces/publicationInterface'
 
-export const publicationCreateSchema: SchemaOf<IPublicationSchema> = yup.object().shape({
-    type: yup.string().required('Type field is required').max(10),
-    title: yup.string().required("Title field is required").max(60),
+const vehicle_type = ['CAR', 'MOTORCYCLE'] as const
+type vehicle_type = typeof vehicle_type[number]
+
+export const publicationCreateSchema: SchemaOf<IPublication> = yup
+  .object()
+  .shape({
+    type: yup.string().required().max(10),
+    title: yup.string().required().max(60),
     year: yup.string().required().min(4).max(4),
-    milieage: yup.number().required("Milieage field is required"),
-    price: yup.number().required("Price field is required"),
-    description: yup.string().required("Description field is required").max(300),
-    vehicle_type: yup.string().required("Vehicle type required").max(10),
-    link: yup.string().required('image link required')
-})
+    milieage: yup.number().required(),
+    price: yup.number().required(),
+    description: yup.string().required().max(300),
+    vehicle_type: yup.mixed<vehicle_type>().oneOf([...vehicle_type]),
+    images: yup
+      .array()
+      .of(
+        yup.object().shape({
+          link: yup.string().required(),
+        })
+      )
+      .required(),
+  })
 
-
-export const publicationUpdateSchema: SchemaOf<IPublicationSchemaUpdate> = yup.object().shape({
-    type: yup.string(),
+export const publicationUpdateSchema: SchemaOf<IPublicationUpdate> = yup
+  .object()
+  .shape({
+    type: yup.string().max(10),
     title: yup.string().max(60),
     year: yup.string().min(4).max(4),
     milieage: yup.number(),
     price: yup.number(),
     description: yup.string().max(300),
-    vehicle_type: yup.string().max(10),
-    link: yup.string()
-})
+    vehicle_type: yup.mixed<vehicle_type>().oneOf([...vehicle_type]),
+    images: yup.array().of(
+      yup
+        .object()
+        .shape({
+          link: yup.string(),
+        })
+        .required()
+    ),
+  })
