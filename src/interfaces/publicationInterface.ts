@@ -18,6 +18,7 @@ export declare type IPublication = {
   milieage: number
   price: number
   description: string
+  is_active?: boolean
   vehicle_type?: Vehicle_Type
   images: IImage[]
 }
@@ -36,6 +37,7 @@ export declare type IPublicationUpdate = {
   milieage?: number
   price?: number
   description?: string
+  is_active?: boolean
   vehicle_type?: Vehicle_Type
   images?: IImage[]
 }

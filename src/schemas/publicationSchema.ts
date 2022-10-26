@@ -18,6 +18,7 @@ export const publicationCreateSchema: SchemaOf<IPublication> = yup
     price: yup.number().required(),
     description: yup.string().required().max(300),
     vehicle_type: yup.mixed<vehicle_type>().oneOf([...vehicle_type]),
+    is_active: yup.boolean(),
     images: yup
       .array()
       .of(
@@ -38,6 +39,7 @@ export const publicationUpdateSchema: SchemaOf<IPublicationUpdate> = yup
     price: yup.number(),
     description: yup.string().max(300),
     vehicle_type: yup.mixed<vehicle_type>().oneOf([...vehicle_type]),
+    is_active: yup.boolean(),
     images: yup.array().of(
       yup
         .object()

@@ -18,6 +18,7 @@ const publicationUpdateService = async (
       price: data.price,
       description: data.description,
       vehicle_type: data.vehicle_type,
+      is_active: data.is_active,
       Image: {
         create: data.images,
       },

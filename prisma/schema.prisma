@@ -15,17 +15,17 @@ generator yup {
 }
 
 model User {
-  id          String    @id @default(uuid())
-  name        String
-  email       String    @unique
-  password    String
-  cpf         String    @unique
-  phone       String    @unique
-  birthdate   DateTime?
-  description String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  isAdmin     Boolean   @default(false)
+  id           String       @id @default(uuid())
+  name         String
+  email        String       @unique
+  password     String
+  cpf          String       @unique
+  phone        String       @unique
+  birthdate    DateTime?
+  description  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  isAdmin      Boolean      @default(false)
   account_type Account_Type @default(BUYER)
 
   Address     Address?
@@ -62,6 +62,7 @@ model Publication {
   price        Float
   description  String
   vehicle_type Vehicle_Type @default(CAR)
+  is_active    Boolean      @default(true)
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 

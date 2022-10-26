@@ -4,6 +4,7 @@ import "../helpers/oneOfSchemas.helper.ts"
 import { StringFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { FloatFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { EnumVehicle_TypeFieldUpdateOperationsInputObjectSchema } from '../internals';;
+import { BoolFieldUpdateOperationsInputObjectSchema } from '../internals';;
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from '../internals';
 
 export const PublicationUpdateManyMutationInputObjectSchema = Yup.object({
@@ -14,5 +15,6 @@ StringFieldUpdateOperationsInputObjectSchema]),  year: Yup.mixed().oneOfSchemas(
 StringFieldUpdateOperationsInputObjectSchema]),  milieage: Yup.mixed().oneOfSchemas([Yup.number(),
 FloatFieldUpdateOperationsInputObjectSchema]),  price: Yup.mixed().oneOfSchemas([Yup.number(),
 FloatFieldUpdateOperationsInputObjectSchema]),  description: Yup.mixed().oneOfSchemas([Yup.string(),
-StringFieldUpdateOperationsInputObjectSchema]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema])
+StringFieldUpdateOperationsInputObjectSchema]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeFieldUpdateOperationsInputObjectSchema]),  is_active: Yup.mixed().oneOfSchemas([Yup.boolean(),
+BoolFieldUpdateOperationsInputObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFieldUpdateOperationsInputObjectSchema])
 });

@@ -8,6 +8,7 @@ import {
   updatePublicationController,
 } from '../controllers/publicationController'
 import isPublicationOwnerOrAdminMiddleware from '../middlewares/isPublicationOwnerOrAdminMiddleware'
+import isSellerMiddleware from '../middlewares/isSellerMiddleware'
 import pagination from '../middlewares/paginateMiddleware'
 
 import tokenValidation from '../middlewares/tokenMiddleware'
@@ -22,6 +23,7 @@ const publicationRouter = Router()
 publicationRouter.post(
   '',
   tokenValidation,
+  isSellerMiddleware,
   validate(publicationCreateSchema),
   createPublicationController
 )

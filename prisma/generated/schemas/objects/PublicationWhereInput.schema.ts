@@ -4,6 +4,7 @@ import "../helpers/oneOfSchemas.helper.ts"
 import { StringFilterObjectSchema } from '../internals';;
 import { FloatFilterObjectSchema } from '../internals';;
 import { EnumVehicle_TypeFilterObjectSchema } from '../internals';;
+import { BoolFilterObjectSchema } from '../internals';;
 import { DateTimeFilterObjectSchema } from '../internals';;
 import { UserRelationFilterObjectSchema } from '../internals';;
 import { UserWhereInputObjectSchema } from '../internals';;
@@ -20,7 +21,8 @@ Yup.string()]),  year: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  milieage: Yup.mixed().oneOfSchemas([FloatFilterObjectSchema,
 Yup.number()]),  price: Yup.mixed().oneOfSchemas([FloatFilterObjectSchema,
 Yup.number()]),  description: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
-Yup.string()]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeFilterObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  user: Yup.mixed().oneOfSchemas([UserRelationFilterObjectSchema,
+Yup.string()]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeFilterObjectSchema]),  is_active: Yup.mixed().oneOfSchemas([BoolFilterObjectSchema,
+Yup.boolean()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeFilterObjectSchema]),  user: Yup.mixed().oneOfSchemas([UserRelationFilterObjectSchema,
 UserWhereInputObjectSchema]),  userId: Yup.mixed().oneOfSchemas([StringFilterObjectSchema,
 Yup.string()]),  Comment: CommentListRelationFilterObjectSchema,  Image: ImageListRelationFilterObjectSchema
 });

@@ -7,6 +7,9 @@ const publicationsListService = async (
   limit: number
 ): Promise<IPublicationResponse> => {
   const publications = await prismaClient.publication.findMany({
+    where:{
+      is_active: true
+    },
     include: {
       Image: {
         select: {
