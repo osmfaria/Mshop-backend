@@ -3,11 +3,11 @@ import { prismaClient } from '../../database/prismaClient'
 import { IPublication } from '../../interfaces/publicationInterface'
 
 const publicationCreateService = async (
-  id: string,
+  userId: string,
   data: IPublication
 ): Promise<Publication> => {
 
-  console.log(id, data)
+  console.log(userId, data)
 
   const publication = await prismaClient.publication.create({
     data: {
@@ -20,9 +20,15 @@ const publicationCreateService = async (
       vehicle_type: data.vehicle_type,
       user: {
         connect: {
-          id
+          id: userId
+        }
+      },
+      Image: {
+        createMany: {
+          data: data.images
         }
       }
+      
     },
   })
 
