@@ -5,5 +5,5 @@ import { UserCreateNestedOneWithoutPublicationInputObjectSchema } from '../inter
 import { ImageCreateNestedManyWithoutPublicationInputObjectSchema } from '../internals';
 
 export const PublicationCreateWithoutCommentInputObjectSchema = Yup.object({
-    id: Yup.string(),  type: Yup.string().required(),  title: Yup.string().required(),  year: Yup.string().required(),  milieage: Yup.number().required(),  price: Yup.number().required(),  description: Yup.string().required(),  createdAt: Yup.date(),  updatedAt: Yup.date(),  user: UserCreateNestedOneWithoutPublicationInputObjectSchema,  Image: ImageCreateNestedManyWithoutPublicationInputObjectSchema
+    id: Yup.string(),  type: Yup.string().required(),  title: Yup.string().required(),  year: Yup.string().required(),  milieage: Yup.number().required(),  price: Yup.number().required(),  description: Yup.string().required(),  is_active: Yup.boolean(),  createdAt: Yup.date(),  updatedAt: Yup.date(),  user: UserCreateNestedOneWithoutPublicationInputObjectSchema,  Image: ImageCreateNestedManyWithoutPublicationInputObjectSchema
 });

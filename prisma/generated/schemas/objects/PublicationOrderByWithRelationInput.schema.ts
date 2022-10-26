@@ -7,5 +7,5 @@ import { CommentOrderByRelationAggregateInputObjectSchema } from '../internals';
 import { ImageOrderByRelationAggregateInputObjectSchema } from '../internals';
 
 export const PublicationOrderByWithRelationInputObjectSchema = Yup.object({
-    id: SortOrderSchema,  type: SortOrderSchema,  title: SortOrderSchema,  year: SortOrderSchema,  milieage: SortOrderSchema,  price: SortOrderSchema,  description: SortOrderSchema,  vehicle_type: SortOrderSchema,  createdAt: SortOrderSchema,  updatedAt: SortOrderSchema,  user: UserOrderByWithRelationInputObjectSchema,  userId: SortOrderSchema,  Comment: CommentOrderByRelationAggregateInputObjectSchema,  Image: ImageOrderByRelationAggregateInputObjectSchema
+    id: SortOrderSchema,  type: SortOrderSchema,  title: SortOrderSchema,  year: SortOrderSchema,  milieage: SortOrderSchema,  price: SortOrderSchema,  description: SortOrderSchema,  vehicle_type: SortOrderSchema,  is_active: SortOrderSchema,  createdAt: SortOrderSchema,  updatedAt: SortOrderSchema,  user: UserOrderByWithRelationInputObjectSchema,  userId: SortOrderSchema,  Comment: CommentOrderByRelationAggregateInputObjectSchema,  Image: ImageOrderByRelationAggregateInputObjectSchema
 });

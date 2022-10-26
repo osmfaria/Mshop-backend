@@ -15,7 +15,8 @@ const loginService = async (
     select: {
       id: true,
       password: true,
-      isAdmin: true
+      isAdmin: true,
+      account_type: true
     },
   })
 
@@ -30,7 +31,7 @@ const loginService = async (
   }
 
   const token = jwt.sign(
-    { id: user.id, isAdmin: user.isAdmin},
+    { id: user.id, isAdmin: user.isAdmin, account_type: user.account_type},
     process.env.JWT_SECRET as string,
     {
       expiresIn: '24h',

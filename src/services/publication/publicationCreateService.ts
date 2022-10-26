@@ -6,9 +6,6 @@ const publicationCreateService = async (
   userId: string,
   data: IPublication
 ): Promise<Publication> => {
-
-  console.log(userId, data)
-
   const publication = await prismaClient.publication.create({
     data: {
       type: data.type,
@@ -20,15 +17,14 @@ const publicationCreateService = async (
       vehicle_type: data.vehicle_type,
       user: {
         connect: {
-          id: userId
-        }
+          id: userId,
+        },
       },
       Image: {
         createMany: {
-          data: data.images
-        }
-      }
-      
+          data: data.images,
+        },
+      },
     },
   })
 

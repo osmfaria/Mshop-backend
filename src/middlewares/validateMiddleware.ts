@@ -16,7 +16,6 @@ export const validate =
 
       next()
     } catch (e) {
-      console.log("pegou erro: ", e)
       next(new AppError((e as any).errors, (e as any).statusCode))
     }
   }

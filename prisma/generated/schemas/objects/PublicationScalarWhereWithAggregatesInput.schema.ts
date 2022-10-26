@@ -4,6 +4,7 @@ import "../helpers/oneOfSchemas.helper.ts"
 import { StringWithAggregatesFilterObjectSchema } from '../internals';;
 import { FloatWithAggregatesFilterObjectSchema } from '../internals';;
 import { EnumVehicle_TypeWithAggregatesFilterObjectSchema } from '../internals';;
+import { BoolWithAggregatesFilterObjectSchema } from '../internals';;
 import { DateTimeWithAggregatesFilterObjectSchema } from '../internals';
 
 export const PublicationScalarWhereWithAggregatesInputObjectSchema = Yup.object({
@@ -16,6 +17,7 @@ Yup.string()]),  year: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjec
 Yup.string()]),  milieage: Yup.mixed().oneOfSchemas([FloatWithAggregatesFilterObjectSchema,
 Yup.number()]),  price: Yup.mixed().oneOfSchemas([FloatWithAggregatesFilterObjectSchema,
 Yup.number()]),  description: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjectSchema,
-Yup.string()]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeWithAggregatesFilterObjectSchema]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  userId: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjectSchema,
+Yup.string()]),  vehicle_type: Yup.mixed().oneOfSchemas([EnumVehicle_TypeWithAggregatesFilterObjectSchema]),  is_active: Yup.mixed().oneOfSchemas([BoolWithAggregatesFilterObjectSchema,
+Yup.boolean()]),  createdAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  updatedAt: Yup.mixed().oneOfSchemas([DateTimeWithAggregatesFilterObjectSchema]),  userId: Yup.mixed().oneOfSchemas([StringWithAggregatesFilterObjectSchema,
 Yup.string()])
 });
