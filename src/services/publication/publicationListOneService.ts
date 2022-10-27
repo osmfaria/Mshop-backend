@@ -2,7 +2,7 @@ import { Publication } from '@prisma/client'
 import { prismaClient } from '../../database/prismaClient'
 import { AppError } from '../../../errors/appError'
 
-const publicationsListOneService = async (id: string) => {
+const publicationsListOneService = async (id: string): Promise<Publication> => {
   const publication = await prismaClient.publication.findUnique({
     where: {
       id: id,

@@ -1,12 +1,13 @@
 import { AppError } from '../../../errors/appError'
 import { prismaClient } from '../../database/prismaClient'
 import { paginateOutput } from '../../functions/paginateOutput'
+import { IPublicationResponse } from '../../interfaces/publicationInterface'
 
 const publicationListByUserService = async (
   userId: string,
   page: number,
   limit: number
-) => {
+): Promise<IPublicationResponse> => {
   const user = await prismaClient.user.findUnique({
     where: {
       id: userId,
