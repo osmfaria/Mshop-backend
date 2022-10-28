@@ -6,10 +6,13 @@ EXPOSE 5000
 
 WORKDIR /app
 
-COPY ["package.json", "yarn.lock"] .
+COPY "package.json" .
+COPY "package-lock.json" .
 
-RUN npm install package.json
+RUN npm install
 
 COPY . .
+
+RUN npx prisma generate
 
 CMD [ "npm", "run", "dev" ]
