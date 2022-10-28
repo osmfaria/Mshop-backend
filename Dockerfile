@@ -10,9 +10,10 @@ COPY "package.json" .
 COPY "package-lock.json" .
 COPY "tsconfig.json" .
 
-COPY . .
 
 RUN npm install
+
+COPY . .
 
 RUN npx prisma generate
 
