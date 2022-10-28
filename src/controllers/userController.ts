@@ -31,6 +31,7 @@ export const listUserController = async (
   request: Request,
   response: Response
 ) => {
+  console.log('test list aqui')
   const { page, limit } = request.pagination
   const users = await userListService(page, limit)
 
