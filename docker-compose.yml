@@ -21,15 +21,15 @@ services:
       - 5431:5432
     env_file: .env
     volumes:
-      - database-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
   migration:
     build: .
     volumes:
-      - .:/code
+      - .:/app
     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npx prisma migrate deploy'
     depends_on:
       - db
 
 volumes:
-  database-data:
+  postgres-data:

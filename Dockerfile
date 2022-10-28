@@ -6,15 +6,14 @@ EXPOSE 5000
 
 WORKDIR /app
 
-COPY "package.json" .
-COPY "package-lock.json" .
-COPY "tsconfig.json" .
-
+COPY package*.json .
+COPY tsconfig.json .
+COPY prisma ./prisma/
+COPY .env .
+COPY . .
 
 RUN npm install
 
-COPY . .
-
 RUN npx prisma generate
 
-CMD [ "npm", "run", "dev" ]
+CMD npm run dev
