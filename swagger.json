@@ -2,7 +2,7 @@
     "openapi":"3.0.0",
     "info":{
         "title":"Motors Shop",
-        "description":"API feita com a finalizado de atender o projeto Motors Shop.",
+        "description":"API feita com a finalidade de atender o projeto Motors Shop.",
     "version":"1.0.0"
     
     },
@@ -10,7 +10,7 @@
 
         "/login":{
             "post":{
-                "description":"Login de usuario!",
+                "description":"Login de usuario",
                 "tags":["Login"],
                 "requestBody":{
                     "description":"Gerar o token",
@@ -23,11 +23,11 @@
                     }
                 },
                 "responses":{
-                    "201":{
-                        "description":"Cadastro de usuario realizado com sucesso"
+                    "200":{
+                        "description":"Login realizado com sucesso"
                     },
-                    "400":{
-                        "description":"Dados incompletos"
+                    "403":{
+                        "description":"Email ou senha invalidos"
                     }
                 }
             }
@@ -48,11 +48,11 @@
                     }
                 },
                 "responses":{
-                    "200":{
-                        "description":"Cadastro de usuario realizado com sucesso"
+                    "201":{
+                        "description":"Usuario criado com sucesso"
                     },
                     "400":{
-                        "description":"Dados incompletos"
+                        "description":"Dados passados incorretamente/email,cpf ou telefone ja estão cadastrados"
                     }
                 }
             },
@@ -67,21 +67,10 @@
                 
                 "responses":{
                     "200":{
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                    "type":"array",
-                                    "items":{
-                                        "$ref":"#/components/schema/ResponseUser"
-                                    }
-                                    
-                                }
-                            }   
-                        },
                         "description":"Listou todos os usuarios com sucesso"
                     },
-                    "400":{
-                        "description":"Dados incompletos"
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
                     }
                 }
             }
@@ -101,20 +90,18 @@
                 ],
                 "responses":{
                     "200":{
-                        "description":"OK",
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                    "type":"object",
-                                    "$ref":"#/components/schema/ResponseUser"
-                                }
-                            }
-                        }
-                    }
+                        "description":"Listou todos os usuarios com sucesso"
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    },
+                    "404":{
+                        "description":"Usuario não existe"
+                    }            
                 }
             },
             "patch":{
-                "description":"Alterar o usuario pelo id",
+                "description":"Atualizar o usuario pelo id",
                 "tags":["User"],
                 "security":[{"bearerAuth":[]}],
                 "parameters":[
@@ -136,16 +123,14 @@
                 },
                 "responses":{
                     "200":{
-                        "description":"OK",
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                    "type":"object",
-                                    "$ref":"#/components/schema/ResponseUser"
-                                }
-                            }
-                        }
-                    }
+                        "description":"Atualizou o usuario"           
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    },
+                "404":{
+                        "description":"Usuario não existe"
+                     }          
                 }
             },
             "delete":{
@@ -162,19 +147,350 @@
                 ],
                 "responses":{
                     "204":{
-                        "description":"No Content",
+                        "description":"Usuario deletado com sucesso"
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    },
+                    "404":{
+                        "description":"Usuario não existe"
+                        }            
+                }
+            }
+        },
+        "/publications":{
+            "post":{
+                "description":"Criação de uma publicação",
+                "security":[
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "tags":["Publication"],
+                "requestBody":{
+                    "description":"Dados para criação",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                
+                                "$ref":"#/components/schema/RequestPublication"
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Publicação criada com sucesso"
+                    },
+                    "400":{
+                        "description":"Dados incompletos"
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+                }
+            },
+            "get":{
+                "description":"Listar todas as publicações",
+                "tags":["Publication"],
+                
+                "responses":{
+                    "200":{
+                        "description":"Listou todos os usuarios com sucesso"
+                    },
+                    "400":{
+                        "description":"Dados incompletos"
+                    }
+                }
+            }
+        },
+        "/publications/{id}":{
+            
+                "get":{
+                    "description":"Listar a publicação pelo id",
+                    "tags":["Publication"],
+                    "parameters":[
+                        {
+                            "name":"id",
+                            "in":"path",
+                            "description":"Id da publicação",
+                            "required":true
+                        }
+                    ],
+                    "responses":{
+                        "200":{
+                            "description":"Publicação listada com sucesso" 
+                        },
+                        "404":{
+                            "description":"Publicação não existe"
+                      }
+
+                    }
+                },
+                "patch":{
+                    "description":"Atualizar a publicação pelo id",
+                    "tags":["Publication"],
+                    "security":[{"bearerAuth":[]}],
+                    "parameters":[
+                        {
+                            "name":"id",
+                            "in":"path",
+                            "description":"Id da publicação",
+                            "required":true
+                        }
+                    ],"requestBody":{
+                        "description":"Dados para Atualização",
                         "content":{
                             "application/json":{
                                 "schema":{
                                     "type":"object",
-                                    "$ref":"#/components/schema/ResponseUser"
+                                    "properties":{
+                                        "is_active":{"type":"boolean","example":false}
+                                    }
                                 }
                             }
                         }
+                    },
+                    "responses":{
+                        "200":{
+                            "description":"Publicação atualizada com sucesso"
+                        },
+                        "404":{
+                            "description":"Publicação não existe"
+                      },
+                      "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+
+                    }
+                },
+                "delete":{
+                    "description":"Deletar a publicação pelo id",
+                    "tags":["Publication"],
+                    "security":[{"bearerAuth":[]}],
+                    "parameters":[
+                        {
+                            "name":"id",
+                            "in":"path",
+                            "description":"Id da publicação",
+                            "required":true
+                        }
+                    ],
+                    "responses":{
+                        "204":{
+                            "description":"Publicação deletada com sucesso"
+                        },
+                        "404":{
+                            "description":"Publicação não existe"
+                      },
+                      "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+                    }
+                }
+            
+        },
+        "/publications/users/{id}":{
+            "get":{
+                "description":"Listar todas as publicações referente ao usuario",
+                "tags":["Publication"],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id do usuario",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Todas as publicações referente ao usuario listadas"
+                    },
+                    "404":{
+                        "description":"Usuario não existe"
+                  }
+                }
+            }
+        },
+        "/comments/{id}":{
+            "post":{
+                "description":"Criação de um Comentario!",
+                "security":[
+                    {
+                        "bearerAuth":[]
+                    }
+                ],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id da publicação",
+                        "required":true
+                    }
+                ],
+                "tags":["Comment"],
+                "requestBody":{
+                    "description":"Dados para criação",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "description":{"type":"string","example":"descrição aqui"}
+                                    
+                                }
+                                   
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Comentario criado com sucesso"
+                    },
+                    "404":{
+                        "description":"Publicação não existe"
+                  },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+                }
+            },
+            
+            "delete":{
+                "description":"Deletar o Comentario da publicação",
+                "tags":["Comment"],
+                "security":[{"bearerAuth":[]}],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id da publicação",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description":"Comentario deletado com sucesso"
+                    },
+                    "404":{
+                        "description":"Comentario não existe"
+                  },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
                     }
                 }
             }
+        },
+        "/comments/publication/{id}":{
+            "get":{
+                "description":"Listar todos os comentarios referente a publicação",
+                "tags":["Comment"],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id da publicação",
+                        "required":true
+                    }
+                ],
+                
+                "responses":{
+                    "200":{
+                        "description":"Listou todos os usuarios com sucesso"
+                    },
+                    "404":{
+                        "description":"Publicação não existe"
+                  },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+                }
+            }
+        },
+        "/images/{id}":{
+            "delete":{
+                "description":"Deletar a imagem pelo id",
+                "tags":["Images"],
+                "security":[{"bearerAuth":[]}],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id da imagem",
+                        "required":true
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description":"No Content"
+                        
+                    },"401":{
+                        "description":"Token invalido ou não foi passado"
+                    },
+                    "404":{
+                        "description":"Imagem não existe"
+                  }       
+
+                }
+            }
+        },
+        "/address":{
+            
+            "get":{
+                "description":"Listar o endereço cadastrado",
+                "security":[{"bearerAuth":[]}],
+                "tags":["Address"],
+                
+                "responses":{
+                    "200":{
+                        "description":"Listou o endereço referente ao usuario"
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    }
+                }
+            }
+        },
+        "/address/{id}":{
+            "patch":{
+                "description":"Atualizar o endereço pelo id do usuario",
+                "tags":["Address"],
+                "security":[{"bearerAuth":[]}],
+                "parameters":[
+                    {
+                        "name":"id",
+                        "in":"path",
+                        "description":"Id do usuario",
+                        "required":true
+                    }
+                ],"requestBody":{
+                    "description":"Dados para Atualização",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schema/UpdatedAddress"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"Endereço atualizado com sucesso"
+                    },
+                    "401":{
+                        "description":"Token invalido ou não foi passado"
+                    },
+              "404":{
+                         "description":"Endereço não existe"
+                   }            
+
+                }
+            }
         }
+       
         
     },
     "components":{
@@ -182,6 +498,7 @@
             "ResponseUser":{
                 "type":"object",
                 "properties":{
+                    "id":{"type":"string","example":"0f04f189-a01d-4dba-9e64-cc87c2c039bd"},
                     "name":{
                         "type":"string",
                         "example":"Adriano"
@@ -317,20 +634,79 @@
                     }
                 }
             },
+            "RequestPublication": {
+                "type":"object",
+                "properties":{
+                    "type":{
+                        "type":"string",
+                        "example":"masi pub"
+                    },
+                    "title":{
+                        "type":"string",
+                        "example":"carro zero"
+                    },
+                    "year":{
+                        "type":"string",
+                        "example":"2001"
+                    },
+                    "milieage":{
+                        "type":"number",
+                        "example":120.00
+                    },
+                    "price":{
+                        "type":"number",
+                        "example":120.00
+                    },
+                    "description":{
+                        "type":"string",
+                        "example":"uma descrição"
+                    },
+                    "vehicle_type":{
+                        "type":"string",
+                        "example":"CAR"
+                    },
+                    "images":{
+                        "type":"array",
+                        "items":{
+                            "properties":{
+
+                                "link":{
+                                    "type":"string",
+                                    "example":"primeiraimagem"
+                                }
+                            }
+                        }
+                    }  
+                }
+            },
             "Login":{
                 "type":"object",
                 "properties":{
-                   
-                    "email":{
-                        "type":"string",
-                        "example":"adrinc@gmail.com"
-                    },
-                    "password":{
-                        "type":"string",
-                        "example":"abc1234"
-                    }
+                    "email":{"type":"string","example":"adrinc@gmail.com"},
+                    "password":{"type":"string","example":"abc1234"}
+                }
+            },
+            "ResponseComments":{
+                "type":"object",
+                "properties":{
+                    "id":{"type":"string","example":"a6c3d300-7143-4e0d-a765-2361zad8ab36"},
+                    "description":{"type":"string","example":"Novo comentário"},
+                    "createdAt":{"type":"string","example":"2022-11-02T13:19:57.688Z"},
+                    "updatedAt":{"type":"string","example":"2022-11-02T13:19:57.688Z"},
+                    "userId":{"type":"uuid","example":"654aae46-fdcc-4ee2-bf55-e2d82fd4d1bb"},
+                    "publicationId":{"type":"uuid","example":"f6b3c300-7143-4c0d-a765-2361aad8ab36"}
+                }
+            },
+            "UpdatedAddress":{
+                "type":"object",
+                "properties":{
+                    "number":{"type":"string","example":"252"},
+                    "city":{"type":"string","example":"Soledade"},
+                    "address":{"type":"string","example":"rua bladsjk"}
+                }
             }
-        }
+            
+           
         },
         "securitySchemes":{
             "bearerAuth":{
