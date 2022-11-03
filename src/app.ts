@@ -12,6 +12,8 @@ appRoutes(app)
 
 app.use(appErrorMiddleware)
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log("server running")
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+    console.log(`server running ${PORT}`)
 })
