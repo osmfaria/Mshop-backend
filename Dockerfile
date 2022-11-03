@@ -14,8 +14,6 @@ RUN npx prisma generate
 
 RUN npm run build
 
-RUN ls -la
-
 ENV PORT=5000
 
 EXPOSE 5000
