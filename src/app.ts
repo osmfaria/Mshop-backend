@@ -4,9 +4,12 @@ import express from "express"
 import appErrorMiddleware from "./middlewares/appErrorMiddleware"
 import appRoutes from "./routes"
 
+
 const app = express()
+const cors = require('cors')
 
 app.use(express.json())
+app.use(cors())
 
 appRoutes(app)
 
