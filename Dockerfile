@@ -1,12 +1,10 @@
 FROM node:16.13.2
 
-ENV PORT=5000
+WORKDIR /usr
 
-EXPOSE 5000
+COPY package*.json ./
 
-WORKDIR /app
-
-COPY package*.json .
+COPY tsconfig.json ./
 
 RUN npm install
 
@@ -14,4 +12,13 @@ COPY . .
 
 RUN npx prisma generate
 
-CMD npm run start
+RUN npm run build
+
+ENV PORT=5000
+
+EXPOSE 5000
+
+CMD ["npm", "start"]
+
+
+

@@ -4,14 +4,19 @@ import express from "express"
 import appErrorMiddleware from "./middlewares/appErrorMiddleware"
 import appRoutes from "./routes"
 
+
 const app = express()
+const cors = require('cors')
 
 app.use(express.json())
+app.use(cors())
 
 appRoutes(app)
 
 app.use(appErrorMiddleware)
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log("server running")
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+    console.log(`server running ${PORT}`)
 })
