@@ -5,6 +5,7 @@ import {
   listOnePublicationController,
   listPublicationByUserController,
   listPublicationController,
+  publicationListByVehicleTypeController,
   updatePublicationController,
 } from '../controllers/publicationController'
 import isPublicationOwnerOrAdminMiddleware from '../middlewares/isPublicationOwnerOrAdminMiddleware'
@@ -33,6 +34,11 @@ publicationRouter.get(
   '/users/:user_id',
   pagination,
   listPublicationByUserController
+)
+publicationRouter.get(
+  '/vehicle_type/:vehicle_type',
+  pagination,
+  publicationListByVehicleTypeController
 )
 publicationRouter.delete(
   '/:publication_id',
