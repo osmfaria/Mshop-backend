@@ -5,6 +5,8 @@ import publicationsListOneService from '../services/publication/publicationListO
 import publicationsListService from '../services/publication/publicationListService'
 import publicationCreateService from '../services/publication/publicationCreateService'
 import publicationListByUserService from '../services/publication/publicationListByUserService'
+import publicationListByVehicleTypeService from '../services/publication/publicationListByVehicleTypeService'
+import { Vehicle_Type } from '@prisma/client'
 
 export const createPublicationController = async (
   request: Request,
@@ -68,6 +70,22 @@ export const listPublicationByUserController = async (
   const { page, limit } = request.pagination
 
   const publications = await publicationListByUserService(user_id, page, limit)
+
+  response.json(publications)
+}
+
+export const publicationListByVehicleTypeController = async (
+  request: Request,
+  response: Response
+) => {
+  const { vehicle_type } = request.params
+  const { page, limit } = request.pagination
+
+  const publications = await publicationListByVehicleTypeService(
+    vehicle_type.toUpperCase() as Vehicle_Type,
+    page,
+    limit
+  )
 
   response.json(publications)
 }

@@ -9,7 +9,7 @@ const Vehicle_Type: {
   MOTORCYCLE: 'MOTORCYCLE',
 }
 
-type Vehicle_Type = typeof Vehicle_Type[keyof typeof Vehicle_Type]
+export type Vehicle_Type = typeof Vehicle_Type[keyof typeof Vehicle_Type]
 
 export declare type IPublication = {
   type: string
