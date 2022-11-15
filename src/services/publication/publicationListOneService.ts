@@ -20,6 +20,7 @@ const publicationsListOneService = async (id: string): Promise<Publication> => {
           description: true,
         },
       },
+      Comment: {},
     },
   })
 
