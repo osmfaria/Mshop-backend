@@ -20,20 +20,6 @@ const publicationsListOneService = async (id: string): Promise<Publication> => {
           description: true,
         },
       },
-      Comment: {
-        select: {
-          id: true,
-          description: true,
-          createdAt: true,
-          updatedAt: true,
-          userId: true,
-          user: {
-            select: {
-              name: true
-            }
-          }
-        }
-      },
     },
   })
 
