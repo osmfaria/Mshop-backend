@@ -32,7 +32,7 @@ const commentListByPublicationService = async (
     skip: (page - 1) * limit,
   })
 
-  const count = await prismaClient.user.count()
+  const count = await prismaClient.comment.count()
   const pagesIndex = paginateOutput(
     count,
     page,
