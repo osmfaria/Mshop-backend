@@ -17,7 +17,8 @@ const loginService = async (
       id: true,
       password: true,
       isAdmin: true,
-      account_type: true
+      account_type: true,
+      name: true,
     },
   })
 
@@ -39,7 +40,7 @@ const loginService = async (
     }
   )
 
-  return {token, id: user.id}
+  return {token, id: user.id, name: user.name}
 }
 
 export default loginService
