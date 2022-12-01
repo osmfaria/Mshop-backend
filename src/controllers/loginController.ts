@@ -4,7 +4,7 @@ import loginService from '../services/login/loginService'
 export const loginController = async (request: Request, response: Response) => {
   const { email, password } = request.inputData
 
-  const { token, id } = await loginService(email, password)
+  const { token, id, name } = await loginService(email, password)
 
-  response.json({ token, id })
+  response.json({ token, id, name })
 }
