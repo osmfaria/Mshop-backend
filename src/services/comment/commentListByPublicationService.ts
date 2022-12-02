@@ -21,7 +21,11 @@ const commentListByPublicationService = async (
   const publicationComments = await prismaClient.comment.findMany({
     where: {
       publicationId: id,
-    }, include : {
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+     include : {
       user: {
         select: {
           name: true
