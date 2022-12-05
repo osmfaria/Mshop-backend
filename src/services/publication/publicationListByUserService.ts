@@ -26,6 +26,7 @@ const publicationListByUserService = async (
       user: {
         select: {
           name: true,
+          description: true,
         },
       },
       Image: {
