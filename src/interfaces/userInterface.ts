@@ -58,3 +58,8 @@ export declare type IAddressUpdate = {
   complement?: string
 }
 
+export declare type IUserGeneral = {
+  name: string
+  description: string | null
+}
+
