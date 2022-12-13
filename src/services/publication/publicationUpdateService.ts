@@ -6,6 +6,12 @@ const publicationUpdateService = async (
   id: string,
   data: IPublicationUpdate
 ): Promise<Publication> => {
+  await prismaClient.image.deleteMany({
+    where: {
+      publicationId: id,
+    },
+  })
+
   const publication = await prismaClient.publication.update({
     where: {
       id: id,
@@ -20,7 +26,7 @@ const publicationUpdateService = async (
       vehicle_type: data.vehicle_type,
       is_active: data.is_active,
       Image: {
-        upsert: data.images
+        create: data.images,
       },
     },
   })
