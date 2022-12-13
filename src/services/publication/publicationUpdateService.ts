@@ -20,7 +20,7 @@ const publicationUpdateService = async (
       vehicle_type: data.vehicle_type,
       is_active: data.is_active,
       Image: {
-        create: data.images,
+        update: data.images,
       },
     },
   })
