@@ -23,7 +23,7 @@ const commentListByPublicationService = async (
       publicationId: id,
     },
     orderBy: {
-      createdAt: 'desc',
+      updatedAt: 'desc',
     },
      include : {
       user: {
