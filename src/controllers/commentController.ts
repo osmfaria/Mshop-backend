@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import commentCreateService from '../services/comment/commentCreateService'
 import commentDeleteService from '../services/comment/commentDeleteService'
 import commentListByPublicationService from '../services/comment/commentListByPublicationService'
+import commentUpdateService from '../services/comment/commentUpdateService'
 
 export const createCommentController = async (
   request: Request,
@@ -34,4 +35,13 @@ export const listCommentsByPublicationController = async (request: Request, resp
   const comments = await commentListByPublicationService(id, page, limit)
 
   response.json(comments)
+}
+
+export const updateCommentController = async (request: Request, response: Response) => {
+  const id = request.params.comment_id
+  const data = request.inputData
+
+  const comment = await commentUpdateService(id, data)
+
+  response.json(comment)
 }
