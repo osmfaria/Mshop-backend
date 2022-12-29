@@ -43,6 +43,15 @@ const userUpdateService = async (
     data: data,
   })
 
+  if (data.address) {
+    await prismaClient.address.update({
+      where: {
+        id: userId,
+      },
+      data: data.address,
+    })
+  }
+
   const updatedUserWithoutPassword = exclude(updatedUser, 'password')
 
   return updatedUserWithoutPassword

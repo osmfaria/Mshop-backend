@@ -31,6 +31,7 @@ export declare type IUserUpdate = {
   phone?: string
   birthdate?: Date
   description?: string
+  address?: IAddressUpdate
 }
 
 export declare type IUserResponse = {
