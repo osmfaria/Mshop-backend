@@ -6,8 +6,8 @@ This is the backend with a RESTful API of an ecommerce created to allow users to
 
 
 
-> Link for deployed application [here](https://motors-ecommerce-api.herokuapp.com/) \
-> Check the [documentation](https://motors-ecommerce-api.herokuapp.com/api-docs/) for proper use.
+> Link for deployed [API](https://motors-ecommerce-api.herokuapp.com/) \
+> Check the [documentation](https://motors-ecommerce-api.herokuapp.com/api-docs/) for proper use
 
 ## :toolbox: Tools required
 
