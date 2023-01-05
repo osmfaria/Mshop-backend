@@ -3,6 +3,7 @@ import {
   createCommentController,
   deleteCommentController,
   listCommentsByPublicationController,
+  updateCommentController,
 } from '../controllers/commentController'
 import isCommentOwnerOrAdminMiddlewarew from '../middlewares/isCommentOwnerOrAdminMiddleware'
 import pagination from '../middlewares/paginateMiddleware'
@@ -28,6 +29,12 @@ commentRouter.delete(
   tokenValidation,
   isCommentOwnerOrAdminMiddlewarew,
   deleteCommentController
+)
+commentRouter.patch(
+  '/:comment_id',
+  tokenValidation,
+  validate(commentCreateSchema),
+  updateCommentController
 )
 
 export default commentRouter

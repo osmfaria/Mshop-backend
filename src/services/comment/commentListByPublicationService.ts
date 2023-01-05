@@ -21,7 +21,11 @@ const commentListByPublicationService = async (
   const publicationComments = await prismaClient.comment.findMany({
     where: {
       publicationId: id,
-    }, include : {
+    },
+    orderBy: {
+      updatedAt: 'desc',
+    },
+     include : {
       user: {
         select: {
           name: true
@@ -32,7 +36,7 @@ const commentListByPublicationService = async (
     skip: (page - 1) * limit,
   })
 
-  const count = await prismaClient.comment.count()
+  const count = await prismaClient.comment.count({where: {publicationId: id}})
   const pagesIndex = paginateOutput(
     count,
     page,

@@ -3,6 +3,7 @@ import {
   createUserController,
   deleteUserController,
   listOneUserController,
+  listOneUserGeneralController,
   listUserController,
   updateUserController,
 } from '../controllers/userController'
@@ -22,6 +23,11 @@ userRouter.get(
   isAccountOwnerOrAdminMiddleware,
   listOneUserController
 )
+userRouter.get(
+  '/general/:user_id',
+  listOneUserGeneralController
+)
+
 userRouter.patch(
   '/:user_id',
   tokenValidation,

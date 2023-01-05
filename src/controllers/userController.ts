@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import createUserService from '../services/user/userCreateService'
 import userDeleteService from '../services/user/userDeleteService'
+import userListOneGeneralService from '../services/user/userListOneGeneralService'
 import userListOneService from '../services/user/userListOneService'
 import userListService from '../services/user/userListService'
 import userUpdateService from '../services/user/userUpdateService'
@@ -23,6 +24,17 @@ export const listOneUserController = async (
   const userId = request.params.user_id
 
   const user = await userListOneService(userId)
+
+  response.json(user)
+}
+
+export const listOneUserGeneralController = async (
+  request: Request,
+  response: Response
+) => {
+  const userId = request.params.user_id
+
+  const user = await userListOneGeneralService(userId)
 
   response.json(user)
 }

@@ -1,0 +1,824 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mshop API",
+    "description": "API for the Mshop ecommerce project",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "User login",
+        "tags": ["Login"],
+        "requestBody": {
+          "description": "Generate token, provides user's id and name",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "403": {
+            "description": "Invalid email or password"
+          }
+        }
+      }
+    },
+
+    "/users": {
+      "post": {
+        "description": "Create user",
+        "tags": ["User"],
+        "requestBody": {
+          "description": "Data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/RequestUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "'An user with this email, cpf or phone has already been registered'"
+          }
+        }
+      },
+      "get": {
+        "description": "List users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["User"],
+
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "List single user",
+        "tags": ["User"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "patch": {
+        "description": "Update user, requirements: user logged must be the same user to be updated, or the logged user is an admin",
+        "tags": ["User"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "New user data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/UpdatedUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete user, requirements: user logged must be the same user to be deleted, or the logged user is an admin",
+        "tags": ["User"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success!"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "users/general/{id}": {
+      "get": {
+        "description": "List user, sensitive information will not be shown",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/publications": {
+      "post": {
+        "description": "Create publication, must be a user type Seller",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Publication"],
+        "requestBody": {
+          "description": "Publication data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/RequestPublication"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      },
+      "get": {
+        "description": "List publications",
+        "tags": ["Publication"],
+
+        "responses": {
+          "200": {
+            "description": "List publications"
+          }
+        }
+      }
+    },
+    "/publications/{id}": {
+      "get": {
+        "description": "List a specific publication",
+        "tags": ["Publication"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "publication id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Publication data"
+          },
+          "404": {
+            "description": "Publication not found"
+          }
+        }
+      },
+      "patch": {
+        "description": "Update publication, must be made by the owner or admin",
+        "tags": ["Publication"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "publication id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "Data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/UpdatePublication"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "Publication not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete publication, must be owner or admin logged in",
+        "tags": ["Publication"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "publication id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success!"
+          },
+          "404": {
+            "description": "Publication not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
+    "/publications/users/{id}": {
+      "get": {
+        "description": "List all publications made by a specific user",
+        "tags": ["Publication"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List with publications"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/publications/vehicle_type/{vehicle_type}": {
+      "get": {
+        "description": "List publications by vehicle type (CAR or MOTORCYCLE)",
+        "tags": ["Publication"],
+        "parameters": [
+          {
+            "name": "vehicle_type",
+            "in": "path",
+            "description": "vehicle type",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        }
+      }
+    },
+    "/comments/{id}": {
+      "post": {
+        "description": "Create a comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "publication id",
+            "required": true
+          }
+        ],
+        "tags": ["Comment"],
+        "requestBody": {
+          "description": "Comment data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "example": "A new comment!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "Publication not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      },
+      "patch": {
+        "description": "Update a comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "comment id",
+            "required": true
+          }
+        ],
+        "tags": ["Comment"],
+        "requestBody": {
+          "description": "Comment data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "example": "An updated comment!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "Comment not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      },
+
+      "delete": {
+        "description": "Delete comment",
+        "tags": ["Comment"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "comment id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success!"
+          },
+          "404": {
+            "description": "Comment not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
+    "/comments/publication/{id}": {
+      "get": {
+        "description": "List comments by publication",
+        "tags": ["Comment"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "publication id",
+            "required": true
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "404": {
+            "description": "Publication not found"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
+    "/images/{id}": {
+      "delete": {
+        "description": "Delete image, must be owner or admin.",
+        "tags": ["Images"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "image id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success!"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "Image not found"
+          }
+        }
+      }
+    },
+    "/address": {
+      "get": {
+        "description": "List user address, based on the user logged",
+        "security": [{ "bearerAuth": [] }],
+        "tags": ["Address"],
+
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Invalid token"
+          }
+        }
+      }
+    },
+    "/address/{id}": {
+      "patch": {
+        "description": "Update user address, must be owner",
+        "tags": ["Address"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "address id",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "Address data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schema/UpdatedAddress"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "404": {
+            "description": "Address not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schema": {
+      "ResponseUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "0f04f189-a01d-4dba-9e64-cc87c2c039bd"
+          },
+          "name": {
+            "type": "string",
+            "example": "Odin Allfather"
+          },
+          "email": {
+            "type": "string",
+            "example": "odin@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "teste"
+          },
+          "phone": {
+            "type": "string",
+            "example": "(83939398484)"
+          },
+          "account_type": {
+            "type": "string",
+            "example": "SELLER"
+          },
+          "birthdate": {
+            "type": "date",
+            "example": "08-14-2005"
+          },
+          "isAdmin": {
+            "type": "boolean",
+            "example": false
+          },
+          "description": {
+            "type": "string",
+            "example": "A new user description!"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "12345678990"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "example": "rua magalhaes neto"
+              },
+              "city": {
+                "type": "string",
+                "example": "Rio de janeiro"
+              },
+              "number": {
+                "type": "string",
+                "example": 123
+              },
+              "state": {
+                "type": "string",
+                "example": "RJ"
+              },
+              "cep": {
+                "type": "string",
+                "example": "12345678"
+              }
+            }
+          }
+        }
+      },
+      "RequestUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Odin Allfather"
+          },
+          "email": {
+            "type": "string",
+            "example": "odin@mail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test1234"
+          },
+          "phone": {
+            "type": "string",
+            "example": "(83)939398454"
+          },
+          "birthdate": {
+            "type": "date",
+            "example": "08-14-2005"
+          },
+          "account_type": {
+            "type": "string",
+            "example": "SELLER"
+          },
+          "isAdmin": {
+            "type": "string",
+            "example": true
+          },
+          "cpf": {
+            "type": "string",
+            "example": "12345978990"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "example": "Comox Av"
+              },
+              "city": {
+                "type": "string",
+                "example": "Vancouver"
+              },
+              "number": {
+                "type": "string",
+                "example": 205
+              },
+              "state": {
+                "type": "string",
+                "example": "BC"
+              },
+              "cep": {
+                "type": "string",
+                "example": "V7H 1P6"
+              }
+            }
+          }
+        }
+      },
+      "UpdatedUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Odin Allfather"
+          },
+          "email": {
+            "type": "string",
+            "example": "odin@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "(83)939398686"
+          }
+        }
+      },
+      "RequestPublication": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "new"
+          },
+          "title": {
+            "type": "string",
+            "example": "Ford Mustang Eco"
+          },
+          "year": {
+            "type": "string",
+            "example": "2019"
+          },
+          "milieage": {
+            "type": "number",
+            "example": 11520.0
+          },
+          "price": {
+            "type": "number",
+            "example": 39000.0
+          },
+          "description": {
+            "type": "string",
+            "example": "Mach 1 performance is evident even before you get behind the wheel. Its streamlined design and exterior styling cues celebrate Mach 1 heritage dating back more than five decades."
+          },
+          "vehicle_type": {
+            "type": "string",
+            "example": "CAR"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "link": {
+                  "type": "string",
+                  "example": "first-image-link.jpg"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdatePublication": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "used"
+          },
+          "title": {
+            "type": "string",
+            "example": "Ford Mustang Ecoboost"
+          },
+          "year": {
+            "type": "string",
+            "example": "2020"
+          },
+          "milieage": {
+            "type": "number",
+            "example": 120.0
+          },
+          "price": {
+            "type": "number",
+            "example": 120.0
+          },
+          "is_active": {
+            "type": "boolean",
+            "example": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "link": {
+                  "type": "string",
+                  "example": "updated-first-image.jpg"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "example": "odin@mail.com" },
+          "password": { "type": "string", "example": "teste1234" }
+        }
+      },
+      "UpdatedAddress": {
+        "type": "object",
+        "properties": {
+          "number": { "type": "string", "example": "252" },
+          "city": { "type": "string", "example": "Calgary" },
+          "address": { "type": "string", "example": "17th av" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

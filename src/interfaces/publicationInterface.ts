@@ -39,5 +39,7 @@ export declare type IPublicationUpdate = {
   description?: string
   is_active?: boolean
   vehicle_type?: Vehicle_Type
-  images?: IImage[]
+  images?: any
 }
+
+// Enumerable<ImageUpdateWithWhereUniqueWithoutPublicationInput> | undefined'.

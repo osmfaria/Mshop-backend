@@ -33,4 +33,12 @@ export const userUpdateSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   phone: yup.string().max(15),
   birthdate: yup.date(),
   description: yup.string().max(200),
+  address: yup.object({
+    address: yup.string().max(200),
+    cep: yup.string().max(20),
+    state: yup.string().max(2),
+    city: yup.string().min(3).max(50),
+    number: yup.string().min(1).max(7),
+    complement: yup.string(),
+  }),
 })

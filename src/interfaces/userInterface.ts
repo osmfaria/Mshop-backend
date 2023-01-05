@@ -31,6 +31,7 @@ export declare type IUserUpdate = {
   phone?: string
   birthdate?: Date
   description?: string
+  address?: IAddressUpdate
 }
 
 export declare type IUserResponse = {
@@ -56,5 +57,10 @@ export declare type IAddressUpdate = {
   city?: string
   number?: string
   complement?: string
+}
+
+export declare type IUserGeneral = {
+  name: string
+  description: string | null
 }
 
