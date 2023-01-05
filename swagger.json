@@ -36,7 +36,7 @@
         "description": "Create user",
         "tags": ["User"],
         "requestBody": {
-          "description": "Data require",
+          "description": "Data",
           "content": {
             "application/json": {
               "schema": {
@@ -159,7 +159,7 @@
     },
     "users/general/{id}": {
       "get": {
-        "description": "List user hiding sensitive data",
+        "description": "List user, sensitive information will not be shown",
         "tags": ["User"],
         "parameters": [
           {
@@ -171,7 +171,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User data"
+            "description": "Ok"
           },
           "404": {
             "description": "User not found"
