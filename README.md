@@ -29,3 +29,9 @@ This is the backend with a RESTful API of an ecommerce created to allow users to
 ## ER Diagram
 
 <img src="./src/assets/diagram.png" />
+
+## License
+
+See the [LICENSE](./LICENSE) file for license rights and limitations (MIT).
+
+
