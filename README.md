@@ -30,6 +30,11 @@ This is the backend with a RESTful API of an ecommerce created to allow users to
 
 <img src="./src/assets/diagram.png" />
 
+## Links
+
+- App frontend [repo](https://github.com/osmfaria/Mshop-frontend);
+- Deployed [app](https://mshop-ecommerce.vercel.app/).
+
 ## License
 
 [MIT](./LICENSE)
