@@ -23,6 +23,7 @@
   "dependencies": {
     "@prisma/client": "^4.5.0",
     "@types/express-paginate": "^1.0.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -30,6 +31,7 @@
     "express-paginate": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
     "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.6.0",
     "typescript": "^4.8.4",
     "yup": "^0.32.11"
   },
