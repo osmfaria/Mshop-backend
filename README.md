@@ -27,4 +27,4 @@ This is the backend of an ecommerce created to allow users to buy and sell cars 
   
 ## ER Diagram
 
-<img src="./src/assets/app-design.png" />
+<img src="./src/assets/diagram.png" />
