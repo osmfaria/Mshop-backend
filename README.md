@@ -2,12 +2,12 @@
  
 # :shopping: Mshop
 
-This is the backend of an ecommerce created to allow users to buy and sell cars and motorcycles. 
+This is the backend with a RESTful API of an ecommerce created to allow users to buy and sell cars and motorcycles. 
 
 
 
-> Link for deployed application [here](https://motors-ecommerce-api.herokuapp.com/) \
-> Check the [documentation](https://motors-ecommerce-api.herokuapp.com/api-docs/) for proper use.
+> Link for deployed [API](https://motors-ecommerce-api.herokuapp.com/) \
+> Check the [documentation](https://motors-ecommerce-api.herokuapp.com/api-docs/) for proper use
 
 ## :toolbox: Tools required
 
@@ -19,7 +19,8 @@ This is the backend of an ecommerce created to allow users to buy and sell cars 
 
 - Clone this repo;
 - On the root folder execute `docker compose up`;
-- Once the container is up and running, send requests based on the [docs](https://motors-ecommerce-api.herokuapp.com/api-docs/).
+- Once the container is up and running, the configured port is 5000, check it running on `http://localhost:5000/api-docs/`
+- Send requests `to http://localhost:5000/***` based on the [docs](https://motors-ecommerce-api.herokuapp.com/api-docs/).
 
 ## 💻 Tech stack
 
@@ -27,4 +28,15 @@ This is the backend of an ecommerce created to allow users to buy and sell cars 
   
 ## ER Diagram
 
-<img src="./src/assets/app-design.png" />
+<img src="./src/assets/diagram.png" />
+
+## 🔗 Links
+
+- App frontend [repo](https://github.com/osmfaria/Mshop-frontend);
+- Deployed [app](https://mshop-ecommerce.vercel.app/).
+
+## :memo: License
+
+[MIT](./LICENSE)
+
+
